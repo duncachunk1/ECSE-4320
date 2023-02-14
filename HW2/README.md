@@ -12,7 +12,7 @@ Ubuntu 22.04.1 LTS
 
 ## Compilation
 
-For the floating point programm please use
+Use the following command to compile the program
 
 ```
  gcc -mavx -march=native -mfpmath=both -O3 -o a.out floating_point_tiling.c
@@ -33,6 +33,11 @@ The commands used for floating point matrix multiplication were:
 - _mm256_loadu_ps
 - _mm256_storeu_ps
 - _mm256_fmadd_ps
+- _mm256_set_epi16
+- _mm256_mulhi_epi16
+- _mm256_mullo_epi16
+- _mm256_add_epi32
+- _mm256_extract_epi16
 
 ## Code Structure
 
@@ -40,8 +45,7 @@ In our code two square matricies are multiplied together using both an intellege
 from the use of memory locality. 
 
 The intellegent approach calculated the values of each matrix cell utilizing 1D vector to represent the 2D matricies we multiplied. First these vectors were split up into
-smaller tiles of 8x8 and then iterated through using one set of for loops to iterate through the matrix as a whole and another set of for loops to iterate through the 
-tiles internally. For each tile on the larger matricies we iterated through all the other tiles loading their rows and columns into 8 value vectors and multiply and
+smaller tiles of 8x8 or 16x16 depending on the user's input. Then, using nested for loops, we iterate over the matrix as a whole as well as each tile internally. For each tile on the larger matricies we iterated through all the other tiles loading their rows and columns into 8 value vectors and multiply and
 accumulated to the cells in the overall matrix that they contributed to.
 
 The naive approach simply interated through every cell in the matrix and multiplied and added the full row and column from the input matricies all at once instead of
@@ -56,7 +60,14 @@ Testing consisted of the comparison between the intellegent and naive approaches
 |---------------|---------------|---------------|------------|
 | 100x100	| 0.000318 |	0.001799	| 15.02 |
 | 1000x1000		|	0.098645 |	0.943665	| 9.46407 |
-| 10000x10000		|	302.385559 |		| 
+| 10000x10000		|	302.385559 |		|
+| 256x256 | 0.031250 | 0.062500 |  |
+| 512x512 | 0.437500 | 0.437500 |  |
+| 1024x1024 | 2.546875 | 3.203125 |  |
+| 2048x2048 | 20.593750 | 107.500 |  |
+| 4096x4096 | 171.703125 | 664.656250 |  |
+| 8192x8192 |  |  |  |
+| 10000x10000 |  |  |  |
 
 
 
