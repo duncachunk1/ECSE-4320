@@ -22,7 +22,7 @@ For the floating point programm please use
 
 Once you have compiled you may run with the command
 ```
-./fp.out <matrix_size> f
+./fp.out <matrix_size>
 ```
 
 ## About the Code
@@ -36,35 +36,28 @@ The commands used for floating point matrix multiplication were:
 
 ## Code Structure
 
-In our code the matricies are multiplied together using both an Intellegent and Naive approach, we then compared the two together to measure the efficeincy gain
+In our code two square matricies are multiplied together using both an intellegent and naive approach, we then compared the two together to measure the efficeincy gain
 from the use of memory locality. 
 
-The Intellegent approach calculated the values of each matrix cell utilizing 1D vector to represent the 2D matricies we multiplied. First these vectors were split up into
+The intellegent approach calculated the values of each matrix cell utilizing 1D vector to represent the 2D matricies we multiplied. First these vectors were split up into
 smaller tiles of 8x8 and then iterated through using one set of for loops to iterate through the matrix as a whole and another set of for loops to iterate through the 
 tiles internally. For each tile on the larger matricies we iterated through all the other tiles loading their rows and columns into 8 value vectors and multiply and
 accumulated to the cells in the overall matrix that they contributed to.
 
+The naive approach simply interated through every cell in the matrix and multiplied and added the full row and column from the input matricies all at once instead of
+taking advantage of memory locality in the cache.
+
 ## Testing and Analysis
 
-Testing consisted of the comparason be
+Testing consisted of the comparison between the intellegent and naive approaches
 
-| Filename	| Old Size(KB)	|New Size (KB)	| # Threads	| Compression Time (s)|
-|---------------|---------------|---------------|---------------|-----------------------|
-| wot.txt	| 24400         |	8900	| 4          	| 0.26367	        |
-| 		|	        |		| 8          	| 0.25668	        |
-| 		|	        |		| 12          	| 0.25221	        |
-| 		|	        |		| 16          	| 0.25556	        |
-| 		|	        |		| 20          	| 0.25016	        |
-| LI_short.txt	| 103228        |	89	| 4          	| 0.06994	        |
-| 		|	        |		| 8          	| 0.07415	        |
-| 		|	        |		| 12          	| 0.06342	        |
-| 		|	        |		| 16          	| 0.06187	        |
-| 		|	        |		| 20          	| 0.06369	        |
-| LI_long.txt	| 619366        |	331	| 4          	| 0.32485	        |
-| 		|	        |		| 8          	| 0.33599	        |
-| 		|	        |		| 12          	| 0.35398	        |
-| 		|	        |		| 16          	| 0.37728	        |
-| 		|	        |		| 20          	| 0.33719	        |
+### Floating Point Matricies
+| Matrix Size	| Time for Intellegent (s)	| Time for Naive (s)	| % Efficiency |
+|---------------|---------------|---------------|------------|
+| 100x100	| 0.000318 |	0.001799	| 15.02 |
+| 1000x1000		|	0.098645 |	0.943665	| 9.46407 |
+| 10000x10000		|	302.385559 |		| 
+
 
 
 ## Conclusion
