@@ -15,14 +15,14 @@ Ubuntu 22.04.1 LTS
 For the floating point programm please use
 
 ```
- gcc -mavx -march=native -mfpmath=both -O3 -o fp.out floating_point_tiling.c
+ gcc -mavx -march=native -mfpmath=both -O3 -o a.out floating_point_tiling.c
 ```
 
 ## Execution
 
 Once you have compiled you may run with the command
 ```
-./fp.out <matrix_size>
+./a.out <matrix_size> <'f' for floating point 's' for short>
 ```
 
 ## About the Code
@@ -62,4 +62,10 @@ Testing consisted of the comparison between the intellegent and naive approaches
 
 ## Conclusion
 
-While our compression proved to work successfully, increasing the thread count did not effect the speed at which the code executed compression. This is believed to be a result of operating and testing on a machine with only a single core CPU. The input data stream experiences a bottleneck effect as the input stream of data cannot compete with the speed of compression as we increase the thread count. In the future, this code should be put to the test on a computer with more than one CPU core, and with larger sizes of input data.
+In this project we designed methods for large matrix multiplication that were extremely advantagous over more common methods. These methods utilize what we know about 
+memory storage and how memory is loaded into the cache. We utilize this knowlege to take advantage of cache locality, or the fact that when something is loaded into
+cache everything around it will be to. We can use this memory locality to design a matrix multiplication algorithm that takes advantage of this locality by splitting
+up the matricies into tiles that will be loaded into cache together and then only using those tiles to do calculations before fetching a new tile. This way we can minimize cache misses which as we have seen significanlty cuts down on program time with increasing returns as the matricies get larger and larger.
+
+These matrix multiplication algorithms have many applications, but the most useful is for the large datasets that you run into when doing any kind of machine learning
+thus this program and others like it are necessary when desining and implementing new machine learning algorithms. 
