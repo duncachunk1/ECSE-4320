@@ -82,15 +82,6 @@ void SIMD_mult_short(const unsigned short *A, const unsigned short *B, unsigned 
                     
                     C[i*n+j] += _mm256_extract_epi16(sum, 15)+ _mm256_extract_epi16(sum, 14)+ _mm256_extract_epi16(sum, 13)+ _mm256_extract_epi16(sum, 12)+ _mm256_extract_epi16(sum, 11)+ _mm256_extract_epi16(sum, 10)+ _mm256_extract_epi16(sum, 9)+ _mm256_extract_epi16(sum, 8)+ _mm256_extract_epi16(sum, 7)+ _mm256_extract_epi16(sum, 6)+ _mm256_extract_epi16(sum, 5)+ _mm256_extract_epi16(sum, 4)+ _mm256_extract_epi16(sum, 3)+ _mm256_extract_epi16(sum, 2)+ _mm256_extract_epi16(sum, 1)+ _mm256_extract_epi16(sum, 0);
                     //printf("C[%d] = %d\n", i*n+j, (_mm256_extract_epi16(sum, 15)+ _mm256_extract_epi16(sum, 14)+ _mm256_extract_epi16(sum, 13)+ _mm256_extract_epi16(sum, 12)+ _mm256_extract_epi16(sum, 11)+ _mm256_extract_epi16(sum, 10)+ _mm256_extract_epi16(sum, 9)+ _mm256_extract_epi16(sum, 8)+ _mm256_extract_epi16(sum, 7)+ _mm256_extract_epi16(sum, 6)+ _mm256_extract_epi16(sum, 5)+ _mm256_extract_epi16(sum, 4)+ _mm256_extract_epi16(sum, 3)+ _mm256_extract_epi16(sum, 2)+ _mm256_extract_epi16(sum, 1)+ _mm256_extract_epi16(sum, 0)));
-
-                    /*
-                    if ((i == 0 && h == 0) || (i == 0 && h == 1)) {
-                        printf("(%d,%d): A[%d-%d], B[%d-%d]   \t", i, h, i*n+h*SHORT_SIZE+0, i*n+h*SHORT_SIZE+15, 0*n+(n*SHORT_SIZE*h)+j, 15*n+(n*SHORT_SIZE*h)+j);
-                        printf("\n%d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d\n", _mm256_extract_epi16(a, 0), _mm256_extract_epi16(a, 1), _mm256_extract_epi16(a, 2), _mm256_extract_epi16(a, 3), _mm256_extract_epi16(a, 4), _mm256_extract_epi16(a, 5), _mm256_extract_epi16(a, 6), _mm256_extract_epi16(a, 7), _mm256_extract_epi16(a, 8), _mm256_extract_epi16(a, 9), _mm256_extract_epi16(a, 10), _mm256_extract_epi16(a, 11), _mm256_extract_epi16(a, 12), _mm256_extract_epi16(a, 13), _mm256_extract_epi16(a, 14), _mm256_extract_epi16(a, 15));
-                        printf("%d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d\n", _mm256_extract_epi16(b, 0), _mm256_extract_epi16(b, 1), _mm256_extract_epi16(b, 2), _mm256_extract_epi16(b, 3), _mm256_extract_epi16(b, 4), _mm256_extract_epi16(b, 5), _mm256_extract_epi16(b, 6), _mm256_extract_epi16(b, 7), _mm256_extract_epi16(b, 8), _mm256_extract_epi16(b, 9), _mm256_extract_epi16(b, 10), _mm256_extract_epi16(b, 11), _mm256_extract_epi16(b, 12), _mm256_extract_epi16(b, 13), _mm256_extract_epi16(b, 14), _mm256_extract_epi16(b, 15));
-                        printf("C[%d] = %d\n", i*n+j, (_mm256_extract_epi16(sum, 15)+ _mm256_extract_epi16(sum, 14)+ _mm256_extract_epi16(sum, 13)+ _mm256_extract_epi16(sum, 12)+ _mm256_extract_epi16(sum, 11)+ _mm256_extract_epi16(sum, 10)+ _mm256_extract_epi16(sum, 9)+ _mm256_extract_epi16(sum, 8)+ _mm256_extract_epi16(sum, 7)+ _mm256_extract_epi16(sum, 6)+ _mm256_extract_epi16(sum, 5)+ _mm256_extract_epi16(sum, 4)+ _mm256_extract_epi16(sum, 3)+ _mm256_extract_epi16(sum, 2)+ _mm256_extract_epi16(sum, 1)+ _mm256_extract_epi16(sum, 0)));
-                    }
-                    */
                 }
             }
         }
