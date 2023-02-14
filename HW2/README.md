@@ -64,6 +64,8 @@ Testing consisted of the comparison between the intellegent and naive approaches
 | 10000x10000		|	302.385559 |	N/A	| N/A |
 
 ### Short Matricies
+| Matrix Size	| Time for Intellegent (s)	| Time for Naive (s)	| % Efficiency |
+|---------------|---------------|---------------|------------|
 | 256x256 | 0.031250 | 0.062500 | 3.33 |
 | 512x512 | 0.437500 | 0.437500 | 0 |
 | 1024x1024 | 2.546875 | 3.203125 | 44.2934783 |
