@@ -10,7 +10,7 @@
 //*
 void SIMD_mult_float(float *a, float *b, float *c, int mSize, int tileSize)
 {
-    /*
+    //*
     //remainder variable will add an extra 'chunk' if it's not equal to zero
     clock_t t = clock();
     //loop through the matrix by tile size
@@ -43,7 +43,7 @@ void SIMD_mult_float(float *a, float *b, float *c, int mSize, int tileSize)
     }
     t = clock()-t;
     printf("SIMD time of execution: (%f seconds).\n", ((float)t) / CLOCKS_PER_SEC);
-    */
+    //*/
 }
 //*/
 //*
