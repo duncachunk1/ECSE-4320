@@ -14,11 +14,11 @@ Ubuntu 22.04.1 LTS
 
 For the floating point programm please use
 
-'''
+```
  gcc -mavx -march=native -mfpmath=both -O3 -o fp.out floating_point_tiling.c
-'''
+```
 
-### Execution
+## Execution
 
 Once you have compiled you may run with the command
 ```
@@ -41,12 +41,12 @@ from the use of memory locality.
 
 The Intellegent approach calculated the values of each matrix cell utilizing 1D vector to represent the 2D matricies we multiplied. First these vectors were split up into
 smaller tiles of 8x8 and then iterated through using one set of for loops to iterate through the matrix as a whole and another set of for loops to iterate through the 
-tiles internally. For each tile on the larger matricies we iterated through all the other tiles and multiplied and accumulated 
+tiles internally. For each tile on the larger matricies we iterated through all the other tiles loading their rows and columns into 8 value vectors and multiply and
+accumulated to the cells in the overall matrix that they contributed to.
 
 ## Testing and Analysis
 
-Testing consisted of the efficiency associated with the number of threads as well as the amount of data that needs to be
-compressed.
+Testing consisted of the comparason be
 
 | Filename	| Old Size(KB)	|New Size (KB)	| # Threads	| Compression Time (s)|
 |---------------|---------------|---------------|---------------|-----------------------|
