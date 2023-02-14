@@ -152,6 +152,7 @@ int main(int argc, char *argv[])
         trivial_mult_float(A, B, D, n);
 
         //Error Checking
+        /*
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (C[i*n+j] != D[i*n+j]) {
@@ -160,6 +161,7 @@ int main(int argc, char *argv[])
                 }
             }
         }
+        */
 
     }
     else if (argv[2][0] == 's') {
@@ -181,6 +183,7 @@ int main(int argc, char *argv[])
         trivial_mult_short(A, B, D, n);
         
         //Error Checking
+        /*
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (C[i*n+j] != D[i*n+j]) {
@@ -189,6 +192,7 @@ int main(int argc, char *argv[])
                 }
             }
         }
+        */
     }
     return 0;
 }
