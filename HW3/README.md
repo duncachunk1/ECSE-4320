@@ -9,6 +9,7 @@ and throughput.
 
 - [Hardware Environment](#hardware_environment)
 - [Installation and Usage](#installation)
+- [Results](#results)
 
 ## Hardware Environment
 | CPU                  | RAM                                       | SSD                                     |
@@ -32,3 +33,16 @@ To install this project, follow these steps:
 1. Use 7-Zip to extract the files and save the contents to your working directory, this does not have to be done in a seperate partition.
 2. Look at the contents of  `memoryResults` to see the command(s)
 
+## Results
+
+Brief description of results
+
+### Memory Latency Testing Results
+
+Brief description of findings
+
+#### Figures
+![](./memoryResults/64vBandwidth.png)
+![](./memoryResults/256vBandwidth.png)
+![](./memoryResults/64vLatency.png)
+![](./memoryResults/256vLatency.png)
