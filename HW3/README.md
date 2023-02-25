@@ -5,7 +5,7 @@ modern memory and storage devices.
 
 ## Table of Contents
 
-- [Hardware Environment](#hardware environment)
+- [Hardware Environment](#hardware_environment)
 - [Installation and Usage](#installation)
 
 ## Hardware Environment
