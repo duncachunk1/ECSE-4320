@@ -43,6 +43,9 @@ Brief description of findings
 
 #### Figures
 ![](./memoryResults/64vBandwidth.png)
+
 ![](./memoryResults/256vBandwidth.png)
+
 ![](./memoryResults/64vLatency.png)
+
 ![](./memoryResults/256vLatency.png)
