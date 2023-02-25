@@ -60,7 +60,8 @@ Brief description of findings
 
 ![](./memoryResults/256vLatency.png)
 
-![image](https://user-images.githubusercontent.com/123609846/221367712-366ab5b6-f0b9-4920-a857-49b5bd8862a2.png)
+![image](https://user-images.githubusercontent.com/123609846/221368038-0206beb5-1d35-4321-970f-7b0d0dd29783.png)
+
 
 
 ### FIO Testing Results
