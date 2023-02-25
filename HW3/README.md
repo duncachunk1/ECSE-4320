@@ -8,7 +8,7 @@ modern memory and storage devices.
 - [Hardware Environment](#hardware environment)
 - [Installation and Usage](#installation)
 
-##Hardware Environment
+## Hardware Environment
 
 ## Installation
 
