@@ -93,6 +93,13 @@ Brief Description of Results
 Brief Description of Analysis
 
 ### Memory Latency Checker Analysis
+This data represents the performance of a storage system for sequential reads of 64-byte / 256-byte blocks with varying delay times. The data shows the relationship between delay (latency) and throughput (MB/sec).
+
+As the latency increases from 0 to 5000 ns, the throughput also increases. This is because at lower delay times, there is less time for the storage system to process the requests, resulting in lower throughput. At higher delay times, the storage system has more time to process the requests, resulting in higher throughput.
+
+However, after a delay of 5000 ns, the throughput starts to decrease as the delay continues to increase. This is because at very high delay times, the storage system becomes a bottleneck and can no longer keep up with the incoming requests, resulting in decreased throughput.
+
+Therefore, there is a tradeoff between latency and throughput, and the optimal delay time depends on the specific storage system and workload. The optimal delay time occurs where the system achieves the highest throughput.
 
 ### FIO Analysis
 We can see from the data that as the block size increases, the IOPS decreases, but the bandwidth increases. Larger block sizes allow more data to be transferred at once, which increases the amount of data that can be transferred per second. However, larger block sizes also mean that it takes longer to transfer each block, which reduces the number of blocks that can be transferred per second (IOPS).
