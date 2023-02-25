@@ -80,6 +80,8 @@ Once installed properly, FIO can be used  to test the performance of storage dev
 
 In the files `fiorandomread.fio` and `fiorandomwrite.fio` you can see that the block sizes can be manipulated by removing and adding the `#` before the corresponding desired block size. The IO depth can be changed as desired, we testedt both 128 and 256. For all tests, the size of the file beingused in the IO operation was 1024000 bytes.
 
+In the table below, rw refers to a test with both read and write. The ration between read and write was set to 70:30.
+
 #### Figures
 
 | Job | Operation  | IO Depth |  Block Size  | IOPS | Bandwidth | Latency |
