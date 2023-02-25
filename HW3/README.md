@@ -9,6 +9,9 @@ modern memory and storage devices.
 - [Installation and Usage](#installation)
 
 ## Hardware Environment
+| CPU                  | RAM                                       | SSD                                     |
+| :-------------:      | :-------------:                           | :----:                                  |
+| Intel(R) Core(TM)i7-8565U CPU @ 1.80GHz | 16G SK Hynix, Part #: HMAA51S6AMR6N-UH     |     Intel SSDPEKKF512G8L         |
 
 ## Installation
 
