@@ -45,11 +45,11 @@ To install this project, follow these steps:
 
 ## Testing and Results
 
-Brief description of results
+The following are the outputs from the softwares reccomended for this project. 
 
 ### Memory Latency Testing Results
 
-The Memory Latency Checker is designed to measure latency and badwidth, and identify and performance bottlenecks. In order to test properly, we ran tests comprising of different data access sizes (64B and 256B) for different read/write ratios: The followig commands were performed to do so:
+The Memory Latency Checker is designed to measure latency and badwidth, as well as identify and performance bottlenecks. In order to test properly, we ran tests comprising of different data access sizes (64B and 256B) for different read/write ratios: The following commands were performed to do so:
 `mlc` : invokes the Memory Latency Checker tool
 `--loaded_latency` : tool will measure loaded latency
 `-l<number>` : stride length in bytes
@@ -76,7 +76,7 @@ The following is an example of a command that was used: `C:\Users\heffec\Desktop
 
 ### FIO Testing Results
 
-Brief Description of Results
+Once installed properly, FIO can be used  to test the performance of storage devices and systems. In this case we will be testing the SSD. The fio files created for this project were based on the examples provided by oracle: https://docs.oracle.com/en-us/iaas/Content/Block/References/samplefiocommandslinux.htm.
 
 #### Figures
 
