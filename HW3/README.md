@@ -1,56 +1,24 @@
 # Course Project #3: Memory and Storage Performance Profiling
 
-This is a brief description of what this project does.
+The objective of this project is to develop first-hands knowledge and deeper understanding on the performance of 
+modern memory and storage devices.
 
 ## Table of Contents
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [Credits](#credits)
-- [License](#license)
-- [Contact Information](#contact-information)
-- [Additional Documentation](#additional-documentation)
+- [Hardware Environment]
+- [Installation and Usage](#installation)
 
 ## Installation
 
 To install this project, follow these steps:
 
-1. Step one
-2. Step two
-3. Step three
+1. Install the Intel Memory Latency Checker and FIO software packages on your system, if they are not already installed.
+  a. sudo apt-get update: make sure all package repositories are up to date
+  b. sudo apt-get install fdisk: get to partition
+  c. https://software.intel.com/content/www/us/en/develop/articles/intelr-memory-latency-checker.html
+  d. Download 7-Zip to extract the contents of the Memory Latency Checker
+2. Create an empty partition on your SSD just for FIO testing: https://www.youtube.com/watch?v=Ej57x2WTegI
+3. See the fioResults to copy commands
+4. See memoryResults to copy commands
 
-## Usage
 
-To use this project, follow these steps:
-
-1. Step one
-2. Step two
-3. Step three
-
-## Contributing
-
-If you would like to contribute to this project, please follow these guidelines:
-
-1. Step one
-2. Step two
-3. Step three
-
-## Credits
-
-Thanks to the following people for contributing to this project:
-
-- Jane Doe
-- John Smith
-
-## License
-
-This project is licensed under the MIT License. For more information, please see the [LICENSE.md](LICENSE.md) file.
-
-## Contact Information
-
-If you have any questions or concerns about this project, please contact the project maintainers at [email address].
-
-## Additional Documentation
-
-For additional documentation related to this project, please see the [wiki](https://github.com/username/project-name/wiki) or the [docs](https://github.com/username/project-name/docs) folder.
