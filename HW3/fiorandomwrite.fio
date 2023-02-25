@@ -10,8 +10,8 @@ time_based
 runtime=1
 numjobs=4
 name=raw-randreadwrite
-rw=randrw
-rwmixread=70
+rw=randwrite
+#rwmixread=70
 							
 [job1]
 size = 1024000
