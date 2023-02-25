@@ -49,9 +49,21 @@ Brief description of results
 
 ### Memory Latency Testing Results
 
-Brief description of findings
+The Memory Latency Checker is designed to measure latency and badwidth, and identify and performance bottlenecks. In order to test properly, we ran tests comprising of different data access sizes (64B and 256B) for different read/write ratios: The followig commands were performed to do so:
+`mlc` : invokes the Memory Latency Checker tool
+`--loaded_latency` : tool will measure loaded latency
+`-l<number>` : stride length in bytes
+`-R` : read-only load generated
+`-W6` : 0:1 read-Non Temporal Write ratio
+`-W7` : 2:1 read-Non Temporal Write ratio
+`-W8` : 1:1 read-Non Temporal Write ratio
+`-W9` : 3:1 read-Non Temporal Write ratio
+
+The following is an example of a command that was used: `C:\Users\heffec\Desktop\Semester 7\Advanced Computer Systems\Project3>mlc --loaded_latency -W7 -l256`
 
 #### Figures
+![image](https://user-images.githubusercontent.com/123609846/221368038-0206beb5-1d35-4321-970f-7b0d0dd29783.png)
+
 ![](./memoryResults/64vBandwidth.png)
 
 ![](./memoryResults/256vBandwidth.png)
@@ -59,8 +71,6 @@ Brief description of findings
 ![](./memoryResults/64vLatency.png)
 
 ![](./memoryResults/256vLatency.png)
-
-![image](https://user-images.githubusercontent.com/123609846/221368038-0206beb5-1d35-4321-970f-7b0d0dd29783.png)
 
 
 
