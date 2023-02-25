@@ -78,6 +78,8 @@ The following is an example of a command that was used: `C:\Users\heffec\Desktop
 
 Once installed properly, FIO can be used  to test the performance of storage devices and systems. In this case we will be testing the SSD. The fio files created for this project were based on the examples provided by oracle: https://docs.oracle.com/en-us/iaas/Content/Block/References/samplefiocommandslinux.htm.
 
+In the files `fiorandomread.fio` and `fiorandomwrite.fio` you can see that the block sizes can be manipulated by removing and adding the `#` before the corresponding desired block size. The IO depth can be changed as desired, we testedt both 128 and 256. For all tests, the size of the file beingused in the IO operation was 1024000 bytes.
+
 #### Figures
 
 | Job | Operation  | IO Depth |  Block Size  | IOPS | Bandwidth | Latency |
@@ -104,7 +106,7 @@ Once installed properly, FIO can be used  to test the performance of storage dev
 
 ## Analysis
 
-Brief Description of Analysis
+The analysis of the results from each software package describes how the tradeoff between latency and bandwidth is evident.
 
 ### Memory Latency Checker Analysis
 This data represents the performance of a storage system for sequential reads of 64-byte / 256-byte blocks with varying delay times. The data shows the relationship between delay (latency) and throughput (MB/sec).
