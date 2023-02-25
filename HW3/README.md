@@ -8,9 +8,10 @@ and throughput.
 ## Table of Contents
 
 - [Hardware Environment](#hardware_environment)
-- [Installation and Usage](#installation)
-- [Results](#results)
+- [Installation and Setup](#installation)
+- [Testing and Results](#results)
 - [Analysis](#analysis)
+- [Intel Enterprise-Grade SSD Comparison](#Intel_Enterprise-Grade_SSD_Comparison)
 
 ## Hardware Environment
 
@@ -25,7 +26,7 @@ and throughput.
 | Ubuntu  | Ubuntu 20.04.1 LTS  | 20.04 | focal |
 
 
-## Installation and Usage
+## Installation and Setup
 
 To install this project, follow these steps:
 
@@ -35,14 +36,14 @@ To install this project, follow these steps:
   - Download 7-Zip to extract the contents of the Memory Latency Checker
 2. Create an empty partition on your SSD just for FIO testing: https://www.youtube.com/watch?v=Ej57x2WTegI
 
-### FIO Testing Setup
+### FIO Setup
 1. Make sure your working directory is the partition you just created
 2. Run the following command: `sudo fio <path/to/file/filename.fio>`
-### Memory Latency Testing Setup
+### Memory Latency Setup
 1. Use 7-Zip to extract the files and save the contents to your working directory, this does not have to be done in a seperate partition.
 2. Look at the contents of  `memoryResults` to see the command(s)
 
-## Results
+## Testing and Results
 
 Brief description of results
 
@@ -99,3 +100,7 @@ We can see from the data that as the block size increases, the IOPS decreases, b
 We observe that as the block size increases, the latency also increases. This is because larger block sizes take longer to transfer, which increases the amount of time it takes for each operation to complete. However, we can also see that as the block size increases, the throughput (measured in IOPS or bandwidth) also increases, which means that more data can be transferred per second.
 
 Overall, this data highlights the tradeoff between latency and throughput. Increasing the block size can increase the throughput (the amount of data that can be transferred per second), but it can also increase the latency (the amount of time it takes for each operation to complete). The optimal block size depends on the specific use case and the desired balance between latency and throughput.
+
+
+
+## Intel Enterprise-Grade SSD Comparison
