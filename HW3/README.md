@@ -13,9 +13,17 @@ and throughput.
 - [Analysis](#analysis)
 
 ## Hardware Environment
+
+### Local Machine
 | CPU                  | RAM                                       | SSD                                     |
 | :-------------:      | :-------------:                           | :----:                                  |
 | Intel(R) Core(TM)i7-8565U CPU @ 1.80GHz | 16G SK Hynix, Part #: HMAA51S6AMR6N-UH     |     Intel SSDPEKKF512G8L         |
+
+### Ubuntu Environment
+Distributor ID: Ubuntu
+Description:    Ubuntu 20.04.1 LTS
+Release:        20.04
+Codename:       focal
 
 ## Installation and Usage
 
