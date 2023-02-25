@@ -1,0 +1,126 @@
+heffec@DESKTOP-OQE61C4:/mnt/d$ sudo fio /mnt/c/users/heffec/desktop/semester\ 7/advanced\ computer\ systems/project3/fiorandomwrite.fio
+job1: (g=0): rw=randrw, bs=(R) 4096B-4096B, (W) 4096B-4096B, (T) 4096B-4096B, ioengine=sync, iodepth=128
+...
+fio-3.16
+Starting 4 processes
+Jobs: 4 (f=4)
+job1: (groupid=0, jobs=4): err= 0: pid=1159: Fri Feb 24 22:50:14 2023
+  read: IOPS=301k, BW=1177MiB/s (1234MB/s)(1178MiB/1001msec)
+    clat (usec): min=3, max=876, avg= 4.70, stdev= 2.67
+     lat (usec): min=3, max=876, avg= 4.74, stdev= 2.68
+    clat percentiles (nsec):
+     |  1.00th=[ 3376],  5.00th=[ 3440], 10.00th=[ 3472], 20.00th=[ 3568],
+     | 30.00th=[ 3696], 40.00th=[ 3760], 50.00th=[ 3856], 60.00th=[ 5024],
+     | 70.00th=[ 5664], 80.00th=[ 5920], 90.00th=[ 6176], 95.00th=[ 6432],
+     | 99.00th=[ 7776], 99.50th=[17280], 99.90th=[24960], 99.95th=[30848],
+     | 99.99th=[81408]
+   bw (  MiB/s): min= 1125, max= 1125, per=95.63%, avg=1125.72, stdev= 0.00, samples=4
+   iops        : min=288183, max=288183, avg=288183.00, stdev= 0.00, samples=4
+  write: IOPS=301k, BW=1177MiB/s (1234MB/s)(1178MiB/1001msec); 0 zone resets
+    clat (usec): min=3, max=5477, avg= 5.13, stdev=10.37
+     lat (usec): min=3, max=5477, avg= 5.19, stdev=10.38
+    clat percentiles (nsec):
+     |  1.00th=[ 3696],  5.00th=[ 3792], 10.00th=[ 3824], 20.00th=[ 3952],
+     | 30.00th=[ 4128], 40.00th=[ 4192], 50.00th=[ 4320], 60.00th=[ 5344],
+     | 70.00th=[ 5984], 80.00th=[ 6304], 90.00th=[ 6624], 95.00th=[ 6944],
+     | 99.00th=[ 8256], 99.50th=[17024], 99.90th=[25472], 99.95th=[28544],
+     | 99.99th=[82432]
+   bw (  MiB/s): min= 1128, max= 1128, per=95.88%, avg=1128.74, stdev= 0.00, samples=4
+   iops        : min=288956, max=288956, avg=288956.00, stdev= 0.00, samples=4
+  lat (usec)   : 4=39.67%, 10=59.68%, 20=0.28%, 50=0.34%, 100=0.03%
+  lat (usec)   : 250=0.01%, 1000=0.01%
+  lat (msec)   : 10=0.01%
+  cpu          : usr=31.60%, sys=68.30%, ctx=0, majf=0, minf=134
+  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued rwts: total=301650,301690,0,0 short=0,0,0,0 dropped=0,0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=128
+
+Run status group 0 (all jobs):
+   READ: bw=1177MiB/s (1234MB/s), 1177MiB/s-1177MiB/s (1234MB/s-1234MB/s), io=1178MiB (1236MB), run=1001-1001msec
+  WRITE: bw=1177MiB/s (1234MB/s), 1177MiB/s-1177MiB/s (1234MB/s-1234MB/s), io=1178MiB (1236MB), run=1001-1001msec
+heffec@DESKTOP-OQE61C4:/mnt/d$ sudo fio /mnt/c/users/heffec/desktop/semester\ 7/advanced\ computer\ systems/project3/fiorandomwrite.fio
+job1: (g=0): rw=randrw, bs=(R) 32.0KiB-32.0KiB, (W) 32.0KiB-32.0KiB, (T) 32.0KiB-32.0KiB, ioengine=sync, iodepth=128
+...
+fio-3.16
+Starting 4 processes
+Jobs: 4 (f=4)
+job1: (groupid=0, jobs=4): err= 0: pid=1174: Fri Feb 24 22:50:19 2023
+  read: IOPS=213k, BW=6660MiB/s (6983MB/s)(6673MiB/1002msec)
+    clat (usec): min=4, max=1368, avg= 7.25, stdev= 6.79
+     lat (usec): min=5, max=1368, avg= 7.31, stdev= 6.80
+    clat percentiles (nsec):
+     |  1.00th=[ 5152],  5.00th=[ 5216], 10.00th=[ 5344], 20.00th=[ 5408],
+     | 30.00th=[ 5600], 40.00th=[ 5728], 50.00th=[ 5920], 60.00th=[ 6432],
+     | 70.00th=[ 8896], 80.00th=[ 9280], 90.00th=[ 9664], 95.00th=[10048],
+     | 99.00th=[13632], 99.50th=[23168], 99.90th=[29824], 99.95th=[52480],
+     | 99.99th=[97792]
+   bw (  MiB/s): min= 6692, max= 6692, per=100.00%, avg=6692.95, stdev= 0.00, samples=4
+   iops        : min=214173, max=214173, avg=214173.00, stdev= 0.00, samples=4
+  write: IOPS=213k, BW=6666MiB/s (6989MB/s)(6679MiB/1002msec); 0 zone resets
+    clat (usec): min=5, max=7708, avg= 7.80, stdev=17.61
+     lat (usec): min=5, max=7708, avg= 8.03, stdev=17.62
+    clat percentiles (nsec):
+     |  1.00th=[ 5728],  5.00th=[ 5856], 10.00th=[ 5920], 20.00th=[ 6048],
+     | 30.00th=[ 6240], 40.00th=[ 6368], 50.00th=[ 6560], 60.00th=[ 7072],
+     | 70.00th=[ 9152], 80.00th=[ 9664], 90.00th=[10176], 95.00th=[10560],
+     | 99.00th=[14528], 99.50th=[23680], 99.90th=[30848], 99.95th=[50944],
+     | 99.99th=[94720]
+   bw (  MiB/s): min= 6720, max= 6720, per=100.00%, avg=6720.53, stdev= 0.00, samples=4
+   iops        : min=215056, max=215056, avg=215056.00, stdev= 0.00, samples=4
+  lat (usec)   : 10=91.10%, 20=8.19%, 50=0.65%, 100=0.04%, 250=0.01%
+  lat (usec)   : 500=0.01%, 1000=0.01%
+  lat (msec)   : 2=0.01%, 10=0.01%
+  cpu          : usr=24.19%, sys=75.73%, ctx=0, majf=0, minf=136
+  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued rwts: total=213536,213727,0,0 short=0,0,0,0 dropped=0,0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=128
+
+Run status group 0 (all jobs):
+   READ: bw=6660MiB/s (6983MB/s), 6660MiB/s-6660MiB/s (6983MB/s-6983MB/s), io=6673MiB (6997MB), run=1002-1002msec
+  WRITE: bw=6666MiB/s (6989MB/s), 6666MiB/s-6666MiB/s (6989MB/s-6989MB/s), io=6679MiB (7003MB), run=1002-1002msec
+heffec@DESKTOP-OQE61C4:/mnt/d$ sudo fio /mnt/c/users/heffec/desktop/semester\ 7/advanced\ computer\ systems/project3/fiorandomwrite.fio
+job1: (g=0): rw=randrw, bs=(R) 128KiB-128KiB, (W) 128KiB-128KiB, (T) 128KiB-128KiB, ioengine=sync, iodepth=128
+...
+fio-3.16
+Starting 4 processes
+Jobs: 4 (f=4)
+job1: (groupid=0, jobs=4): err= 0: pid=1189: Fri Feb 24 22:50:27 2023
+  read: IOPS=108k, BW=13.2GiB/s (14.2GB/s)(13.2GiB/1001msec)
+    clat (usec): min=11, max=908, avg=15.56, stdev= 8.17
+     lat (usec): min=11, max=908, avg=15.61, stdev= 8.18
+    clat percentiles (usec):
+     |  1.00th=[   12],  5.00th=[   12], 10.00th=[   12], 20.00th=[   12],
+     | 30.00th=[   13], 40.00th=[   13], 50.00th=[   14], 60.00th=[   14],
+     | 70.00th=[   19], 80.00th=[   20], 90.00th=[   21], 95.00th=[   22],
+     | 99.00th=[   32], 99.50th=[   38], 99.90th=[   73], 99.95th=[   95],
+     | 99.99th=[  174]
+   bw (  MiB/s): min=13472, max=13472, per=99.59%, avg=13472.85, stdev= 0.00, samples=4
+   iops        : min=107781, max=107781, avg=107781.00, stdev= 0.00, samples=4
+  write: IOPS=109k, BW=13.3GiB/s (14.2GB/s)(13.3GiB/1001msec); 0 zone resets
+    clat (usec): min=12, max=955, avg=16.93, stdev=11.23
+     lat (usec): min=13, max=956, avg=18.05, stdev=11.39
+    clat percentiles (usec):
+     |  1.00th=[   13],  5.00th=[   13], 10.00th=[   13], 20.00th=[   14],
+     | 30.00th=[   14], 40.00th=[   15], 50.00th=[   15], 60.00th=[   15],
+     | 70.00th=[   21], 80.00th=[   22], 90.00th=[   23], 95.00th=[   24],
+     | 99.00th=[   35], 99.50th=[   40], 99.90th=[   76], 99.95th=[  104],
+     | 99.99th=[  701]
+   bw (  MiB/s): min=13563, max=13563, per=99.94%, avg=13563.44, stdev= 0.00, samples=4
+   iops        : min=108506, max=108506, avg=108506.00, stdev= 0.00, samples=4
+  lat (usec)   : 20=75.60%, 50=24.18%, 100=0.18%, 250=0.03%, 500=0.01%
+  lat (usec)   : 750=0.01%, 1000=0.01%
+  cpu          : usr=14.80%, sys=85.12%, ctx=0, majf=0, minf=136
+  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued rwts: total=108331,108678,0,0 short=0,0,0,0 dropped=0,0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=128
+
+Run status group 0 (all jobs):
+   READ: bw=13.2GiB/s (14.2GB/s), 13.2GiB/s-13.2GiB/s (14.2GB/s-14.2GB/s), io=13.2GiB (14.2GB), run=1001-1001msec
+  WRITE: bw=13.3GiB/s (14.2GB/s), 13.3GiB/s-13.3GiB/s (14.2GB/s-14.2GB/s), io=13.3GiB (14.2GB), run=1001-1001msec
+heffec@DESKTOP-OQE61C4:/mnt/d$

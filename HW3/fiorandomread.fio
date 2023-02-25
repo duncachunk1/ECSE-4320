@@ -1,0 +1,16 @@
+[global]
+#bs=4K
+#bs=32k
+#bs=128k
+iodepth=256
+direct=1
+ioengine=sync
+group_reporting
+time_based
+runtime=1
+numjobs=4
+name=raw-randread
+rw=randread
+							
+[job1]
+size = 1024000

@@ -1,0 +1,33 @@
+
+C:\Users\heffec\Desktop\Semester 7\Advanced Computer Systems\Project3>mlc --loaded_latency -W7 -l64
+Intel(R) Memory Latency Checker - v3.10
+Command line parameters: --loaded_latency -W7 -l64
+
+Using buffer size of 100.000MiB/thread for reads and an additional 100.000MiB/thread for writes
+
+Measuring Loaded Latencies for the system
+Using all the threads from each core if Hyper-threading is enabled
+Inject  Latency Bandwidth
+Delay   (ns)    MB/sec
+==========================
+ 00000  165.34    24501.6
+ 00002  164.47    24751.6
+ 00008  157.15    25304.6
+ 00015  152.35    25552.1
+ 00050  134.28    26784.6
+ 00100   81.93    20170.5
+ 00200   67.35    12633.5
+ 00300   61.53     9380.3
+ 00400   60.92     7296.7
+ 00500   59.28     6283.9
+ 00700   56.63     4943.8
+ 01000   54.88     3882.5
+ 01300   61.64     3109.0
+ 01700   60.38     2689.4
+ 02500   60.08     2173.4
+ 03500   58.79     1890.0
+ 05000   58.77     1654.6
+ 09000   57.37     1431.7
+ 20000   58.12     1243.2
+
+C:\Users\heffec\Desktop\Semester 7\Advanced Computer Systems\Project3>
