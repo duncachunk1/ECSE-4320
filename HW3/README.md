@@ -60,6 +60,31 @@ Brief description of findings
 
 ![](./memoryResults/256vLatency.png)
 
+| Delay | Latency (ns)  | MB/sec  |
+| --- | --- | --- |
+| 0 |	141.81  |	23305.5 |
+| 2	|135.04 |	23983.5 |
+| 8	|127.06 |	24668.5 |
+| 15  | 129.81  |	24988.8 |
+| 50  | 90.62	| 28103.3 |
+| 100 |	66.67	| 20175.1 |
+| 200 |	65.71	| 10168.5 |
+| 300 |	70.4  | 7213.1  |
+| 400 |	70.52	| 5717.8  |
+| 500 |	56	| 5345.4  |
+| 700 |	53.49 |	4273  |
+| 1000  |	66	| 2770.7  |
+| 1300  |	63.4  |	2401.8  |
+| 1700  |	80.06	| 1780.2  |
+| 2500  |	79.05	| 1510.8  |
+| 3500  |	83.47	| 1230.2  |
+| 5000  |	62.54	|   1391.4  |
+| 9000  |	58.44	| 1305  |
+| 20000 |	61.68	| 1131.1  |
+
+![image](https://user-images.githubusercontent.com/123609846/221367712-366ab5b6-f0b9-4920-a857-49b5bd8862a2.png)
+
+
 ### FIO Testing Results
 
 Brief Description of Results
@@ -95,9 +120,7 @@ Brief Description of Analysis
 ### Memory Latency Checker Analysis
 This data represents the performance of a storage system for sequential reads of 64-byte / 256-byte blocks with varying delay times. The data shows the relationship between delay (latency) and throughput (MB/sec).
 
-As the latency increases from 0 to 5000 ns, the throughput also increases. This is because at lower delay times, there is less time for the storage system to process the requests, resulting in lower throughput. At higher delay times, the storage system has more time to process the requests, resulting in higher throughput.
-
-However, after a delay of 5000 ns, the throughput starts to decrease as the delay continues to increase. This is because at very high delay times, the storage system becomes a bottleneck and can no longer keep up with the incoming requests, resulting in decreased throughput.
+The data indicates that as the delay increases, the latency decreases and the bandwidth increases up to a certain point. After that point, further increase in delay leads to a decrease in bandwidth. At very high delay times, the storage system becomes a bottleneck and can no longer keep up with the incoming requests, resulting in decreased throughput.
 
 Therefore, there is a tradeoff between latency and throughput, and the optimal delay time depends on the specific storage system and workload. The optimal delay time occurs where the system achieves the highest throughput.
 
