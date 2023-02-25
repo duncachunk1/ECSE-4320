@@ -28,5 +28,7 @@ To install this project, follow these steps:
 ### FIO Testing
 1. Make sure your working directory is the partition you just created
 2. Run the following command: `sudo fio <path/to/file/filename.fio>`
-
+### Memory Latency Testing
+1. Use 7-Zip to extract the files and save the contents to your working directory, this does not have to be done in a seperate partition.
+2. Look at the contents of  `memoryResults` to see the command(s)
 
