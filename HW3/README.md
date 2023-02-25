@@ -81,3 +81,13 @@ Brief Description of Results
 
 ## Analysis
 
+Brief Description of Analysis
+
+### Memory Latency Checker Analysis
+
+### FIO Analysis
+We can see from the data that as the block size increases, the IOPS decreases, but the bandwidth increases. Larger block sizes allow more data to be transferred at once, which increases the amount of data that can be transferred per second. However, larger block sizes also mean that it takes longer to transfer each block, which reduces the number of blocks that can be transferred per second (IOPS).
+
+We observe that as the block size increases, the latency also increases. This is because larger block sizes take longer to transfer, which increases the amount of time it takes for each operation to complete. However, we can also see that as the block size increases, the throughput (measured in IOPS or bandwidth) also increases, which means that more data can be transferred per second.
+
+Overall, this data highlights the tradeoff between latency and throughput. Increasing the block size can increase the throughput (the amount of data that can be transferred per second), but it can also increase the latency (the amount of time it takes for each operation to complete). The optimal block size depends on the specific use case and the desired balance between latency and throughput.
