@@ -10,6 +10,7 @@ and throughput.
 - [Hardware Environment](#hardware_environment)
 - [Installation and Usage](#installation)
 - [Results](#results)
+- [Analysis](#analysis)
 
 ## Hardware Environment
 | CPU                  | RAM                                       | SSD                                     |
@@ -26,10 +27,10 @@ To install this project, follow these steps:
   - Download 7-Zip to extract the contents of the Memory Latency Checker
 2. Create an empty partition on your SSD just for FIO testing: https://www.youtube.com/watch?v=Ej57x2WTegI
 
-### FIO Testing
+### FIO Testing Setup
 1. Make sure your working directory is the partition you just created
 2. Run the following command: `sudo fio <path/to/file/filename.fio>`
-### Memory Latency Testing
+### Memory Latency Testing Setup
 1. Use 7-Zip to extract the files and save the contents to your working directory, this does not have to be done in a seperate partition.
 2. Look at the contents of  `memoryResults` to see the command(s)
 
@@ -78,5 +79,5 @@ Brief Description of Results
 | 18 | rw 70:30  | 256 | 128KB | r:156k, w:67.3k | r:20.4GB/s, w:8817MB/s  | r:15.54us, w:avg=18.01us  |
 
 
-
+## Analysis
 
