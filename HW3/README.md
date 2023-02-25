@@ -58,6 +58,7 @@ Brief Description of Results
 
 A.
 | Job | Operation|Block Size  | IOPS |Bandwidth|Latency|
+| :-------------:      | :-------------:                           | :----:                                  |
 | 1 | randread  | 4KB | 551k |  2151MiB/s | avg=5.43us  |
 | 2 | randwrite | 4KB | 250k  |  976MiB/s  |  avg=10.01us |
 | 3 | randread  | 64KB  | 148k| 9542MiB/s  |  avg=871.64us  |
