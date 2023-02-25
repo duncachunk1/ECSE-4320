@@ -27,7 +27,6 @@ To install this project, follow these steps:
 
 ### FIO Testing
 1. Make sure your working directory is the partition you just created
-2. Run the following command:
-- `sudo fio <path/to/file/filename.fio>`
+2. Run the following command: `sudo fio <path/to/file/filename.fio>`
 
 
