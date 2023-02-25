@@ -1,7 +1,9 @@
 # Course Project #3: Memory and Storage Performance Profiling
 
 The objective of this project is to develop first-hands knowledge and deeper understanding on the performance of 
-modern memory and storage devices.
+modern memory and storage devices. Through the utilization of publicly available software packages like Flexible 
+IO Tester (FIO) and Intel Memory Latency Checker, we were able to whitness the trade-off between access latency 
+and throughput.
 
 ## Table of Contents
 
