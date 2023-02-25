@@ -59,9 +59,23 @@ Brief Description of Results
 | Job | Operation  | IO Depth |  Block Size  | IOPS | Bandwidth | Latency |
 | --- | --- | --- | --- | --- | --- | --- |
 | 1 | randread |  128 | 4KB | 551k |  2151MiB/s | avg=5.43us  |
-| 2 | randread |  128 | 32kKB | 451k  |  13.8GiB/s  |  avg= 7.17us |
-| 3 | randread |  128 | 128KB  | 233k | 28.5GiB/s  |  aavg=15.54us  |
-| 4 |
+| 2 | randread |  128 | 32KB | 451k  |  13.8GiB/s  |  avg= 7.17us |
+| 3 | randread |  128 | 128KB  | 233k | 28.5GiB/s  |  avg=15.54us  |
+| 4 | randwrite | 128 | 4KB | 385k | 1502MiB/s |  avg= 7.96us |
+| 5 | randwrite | 128 | 32KB  | 270k  | 8431MiB/s | avg=12.30us |
+| 6 | randwrite | 128 | 128KB | 143k  | 17.4GiB/s | avg=25.73us |
+| 7 | rw 70:30  | 128 | 4KB | r:453k, w:195k | r:1768MiB/s, w:761MiB/s  | r:4.49us, w:avg= 4.91us  |
+| 8 | rw 70:30  | 128 | 32KB | r:322k, w:139k | r:9.83GB/s, w:4543MB/s  | r:6.88us, w:avg= 7.60us  |
+| 9 | rw 70:30  | 128 | 128KB | r:154k, w:66.5k | r:18.8GiB/s, w:8721MB/s  | r:15.78us, w:avg=18.16us  |
+| 10 | randread |  256 | 4KB | 652k |  2671MB/s | avg=4.55us  |
+| 11 | randread |  256 | 32KB | 466k  |  15.3GB/s  |  avg= 6.97us |
+| 12 | randread |  256 | 128KB  | 232k | 30.4GB/s  |  avg=15.66us  |
+| 13 | randwrite | 256 | 4KB | 379k | 1552MB/s |  avg= 8.03us |
+| 14 | randwrite | 256 | 32KB  | 291k  | 9523MB/s | avg=11.46us |
+| 15 | randwrite | 256 | 128KB | 151k  | 19.7GB/s | avg=24.38us |
+| 16 | rw 70:30  | 256 | 4KB | r:419k, w:180k | r:1717MB/s, w:738MB/s  | r:4.81us, w:avg= 5.22us  |
+| 17 | rw 70:30  | 256 | 32KB | r:320k, w:138k | r:10.5GB/s, w:4515MB/s  | r:6.90us, w:avg= 7.70us  |
+| 18 | rw 70:30  | 256 | 128KB | r:156k, w:67.3k | r:20.4GB/s, w:8817MB/s  | r:15.54us, w:avg=18.01us  |
 
 
 
