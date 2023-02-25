@@ -57,10 +57,10 @@ Brief Description of Results
 #### Figures
 
 A.
-|Job|Operation|Block Size|IOPS|Bandwidth|Latency|
-|1|randread|4KB|551k|2151MiB/s|avg=5.43us|
-|2|randwrite|4KB|250k|976MiB/s|avg=10.01us|
-|3|randread|64KB|148k|9542MiB/s|avg=871.64us|
-|4|randwrite|64KB|47.7k|3056MiB/s|avg=2671.57us|
+| Job | Operation|Block Size  | IOPS |Bandwidth|Latency|
+| 1 | randread  | 4KB | 551k |  2151MiB/s | avg=5.43us  |
+| 2 | randwrite | 4KB | 250k  |  976MiB/s  |  avg=10.01us |
+| 3 | randread  | 64KB  | 148k| 9542MiB/s  |  avg=871.64us  |
+| 4 | randwrite | 64KB  | 47.7k|  3056MiB/s | avg=2671.57us |
 
 
