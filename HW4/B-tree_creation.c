@@ -68,16 +68,52 @@ Node* build_btree(string filename) {
 
 void print_btree(Node* root) {
     if (root != nullptr) {
-        for (int i = 0; i < root->count; i++) {
+        for (int i = 0; i <= root->count; i++) {  // modify loop condition
             print_btree(root->child[i]);
-            cout << root->keys[i] << " ";
+            if (i < root->count) {
+                cout << root->keys[i] << " ";
+            }
         }
-        print_btree(root->child[root->count]);
     }
 }
 
+void encode_btree(Node* root, ofstream& outfile) {
+    if (root != nullptr) {
+        // Write the number of keys in the current node
+        outfile.write(reinterpret_cast<char*>(&root->count), sizeof(int));
+        
+        // Write the keys in the current node
+        for (int i = 0; i < root->count; i++) {
+            outfile.write(reinterpret_cast<char*>(&root->keys[i]), sizeof(int));
+        }
+        
+        // Recursively encode the child nodes
+        for (int i = 0; i <= root->count; i++) {
+            encode_btree(root->child[i], outfile);
+        }
+    }
+}
+
+
+
 int main() {
     Node* root = build_btree("input.txt");
+    
+    // Open the output file for writing
+    ofstream outfile("output.bin", ios::out | ios::binary);
+    if (!outfile.is_open()) {
+        cout << "Unable to open file for writing";
+        return 1;
+    }
+    
+    // Encode the B-tree and write it to the output file
+    encode_btree(root, outfile);
+    
+    // Close the output file
+    outfile.close();
+    
+    // Print the B-tree
     print_btree(root);
+    
     return 0;
 }
