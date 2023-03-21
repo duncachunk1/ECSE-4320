@@ -19,7 +19,7 @@ public:
     HashTable(int capacity);
 
     //DESTRUCTOR
-    ~HashTable();
+    //~HashTable();
 
     //GETTERS
     bool containsKey(const KeyType& key) const; //checks to see if a particular key is present
@@ -41,18 +41,18 @@ public:
 
 private:
     // Hash table implementation details go here
-    static const int hashGroups;    //number of indices in the hash table
+    static constexpr int hashGroups = 10;    //number of indices in the hash table
     std::list<std::pair<KeyType, ValueType> > table[hashGroups];
 };
 
 //CONSTRUCTORS
 template<typename KeyType, typename ValueType>
-HashTable<KeyType, ValueType>::HashTable() : hashGroups(10) {
+HashTable<KeyType, ValueType>::HashTable(){
     // constructor code here
 }
 
 template<typename KeyType, typename ValueType>
-HashTable<KeyType, ValueType>::HashTable(int capacity) : hashGroups(capacity) {
+HashTable<KeyType, ValueType>::HashTable(int capacity){
     // constructor code here
 }
 
@@ -70,7 +70,7 @@ bool HashTable<KeyType, ValueType>::containsKey(const KeyType& key) const {
 template<typename KeyType, typename ValueType>
 void HashTable<KeyType, ValueType>::insert(const KeyType& key, const ValueType& value) {
     if (!containsKey(key)) {
-        table.insret(std::make_pair(key, value));
+        table.insert(std::make_pair(key, value));
     }
 }
 
