@@ -15,6 +15,7 @@ The template/typename heywords are implemented so that this class can encode a d
 
 #include <iostream>
 #include <string>
+#include <type_traits>
 
 template<typename dataType>
 class Encoder {
@@ -41,8 +42,8 @@ private:
 
 template<typename dataType>
 Encoder<dataType>::Encoder() {
-    std::cout << "Encoder initialized" << std::endl;
-    originalData = 0;   //arbitrary initial value
+    //std::cout << "Encoder initialized" << std::endl;
+    //originalData = 0;   //arbitrary initial value
 }
 
 template<typename dataType>
@@ -67,7 +68,16 @@ void Encoder<dataType>::setData(const dataType& d) {
 template<typename dataType>
 void Encoder<dataType>::encodeData() {
     int counter = 1;
-    std::string castedData = std::to_string(originalData);
+    std::string castedData;
+
+    //*
+    if (std::is_same<dataType, std::string>::value) {
+        castedData = originalData;
+    } else {
+        std::string castedData = std::to_string(originalData);
+    }
+    
+    
 
     for(int i = 0; i < castedData.size(); i++) {
         if (castedData[i] == castedData[i+1]) {
