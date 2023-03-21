@@ -16,12 +16,14 @@ public:
     
     //CONSTRUCTORS
     HashTable();
-    HashTable(size_t capacity);
+    HashTable(int capacity);
 
+    //DESTRUCTOR
+    ~HashTable();
 
     //GETTERS
-    bool contains(const KeyType& key) const; //checks to see if a particular key is present
-    bool contains(const ValueType& value) const; //checks to tsee if a particular value is present
+    bool containsKey(const KeyType& key) const; //checks to see if a particular key is present
+    bool containsValue(const ValueType& value) const; //checks to tsee if a particular value is present
     ValueType query(const KeyType& key) const;  //returns the specified value from the table
     size_t size() const;    //size of the table
     bool isEmpty() const;   //checks if the table/key contains any elements
@@ -40,21 +42,37 @@ public:
 private:
     // Hash table implementation details go here
     static const int hashGroups;    //number of indices in the hash table
-    std::list<std::pair<KeyType, ValueType> > table[hashGroups];    //list of 
+    std::list<std::pair<KeyType, ValueType> > table[hashGroups];
 };
 
-
+//CONSTRUCTORS
+template<typename KeyType, typename ValueType>
+HashTable<KeyType, ValueType>::HashTable() : hashGroups(10) {
+    // constructor code here
+}
 
 template<typename KeyType, typename ValueType>
-bool HashTable<KeyType, ValueType>::isEmpty() const{
-    int sum;
-    for (int i = 0; i < hashGroups; i++) {
-        sum += table[i].size();
-    }
-
-    if (sum == 0) {
-        return true;
-    }
-    return false;
+HashTable<KeyType, ValueType>::HashTable(int capacity) : hashGroups(capacity) {
+    // constructor code here
 }
+
+//DESTRUCTOR
+
+
+//GETTERS
+template<typename KeyType, typename ValueType>
+bool HashTable<KeyType, ValueType>::containsKey(const KeyType& key) const {
+    bool found = (std::find(table.begin(), table.end(), key) != table.end());
+    return found;
+}
+
+//SETTERS
+template<typename KeyType, typename ValueType>
+void HashTable<KeyType, ValueType>::insert(const KeyType& key, const ValueType& value) {
+    if (!containsKey(key)) {
+        table.insret(std::make_pair(key, value));
+    }
+}
+
+
 #endif

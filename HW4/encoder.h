@@ -16,6 +16,8 @@ The template/typename heywords are implemented so that this class can encode a d
 #include <iostream>
 #include <string>
 #include <type_traits>
+#include <unordered_map>
+#include <sstream>
 
 template<typename dataType>
 class Encoder {
@@ -38,6 +40,7 @@ public:
 private:
     std::string encodedData;
     dataType originalData;
+    //static std::unordered_map<std::string, dataType> dict;
 };
 
 template<typename dataType>
@@ -74,7 +77,9 @@ void Encoder<dataType>::encodeData() {
     if (std::is_same<dataType, std::string>::value) {
         castedData = originalData;
     } else {
-        std::string castedData = std::to_string(originalData);
+        std::ostringstream oss;
+        oss << originalData;
+        castedData = oss.str();
     }
     
     
@@ -89,6 +94,12 @@ void Encoder<dataType>::encodeData() {
             counter = 1;
         }
     }
+    /*
+    auto it = dict.find(encodedData);
+    if (it == dict.end()) {
+        dict[encodeData] = originalData; // add new item to dictionary
+    }
+    */
 }
 
 template<typename dataType>

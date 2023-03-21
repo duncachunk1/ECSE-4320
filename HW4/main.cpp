@@ -10,17 +10,22 @@
 //about a static function
 template <typename dataType>
 void encodingNeeds(Encoder<dataType>& e, const dataType d) {
-	e.setData(d);
-	e.encodeData();
+	std::cout << d << std::endl;
+    e.setData(d);
+    e.encodeData();
+    e.print(std::cout);
 }
+
 
 int main(int argc, char **argv) {
 
 	//arg1 will be the input file
 	//arg2 will be the num of threads
 
-	if (argc != 2) {
+	if (argc != 3) {
         std::cerr << "Usage: " << argv[0] << " input_file" << std::endl;
+        std::cerr << "ARGC: " << argc << std::endl;
+        std::cout << argv[0] << ", " << argv[1] << ", " << argv[2] << std::endl;
         return 1;
     }
 
@@ -41,9 +46,9 @@ int main(int argc, char **argv) {
     //read data into the program depending on the desired number of threads
     std::string data[numThreads];
     std::string dataRead;    
-
     std::thread threads[numThreads];
     Encoder<std::string> encoders[numThreads];
+    HashTable<std::string, std::string> hashtable;
 
     //set up the threads to encode the data in parallel
     //im having trouble encoding in parallel, probably a stupid fix
@@ -51,12 +56,33 @@ int main(int argc, char **argv) {
     //assigns that data to an encoder
     //and eventually each encode will encode that data in parallel.
     //Once we can encode in parallel, it will make sense to set the data in parallel to
-    for (int i = 0; i < numThreads; i++) {
-    	std::getline(infile, data[i]);
-    	encoders[i] = Encoder<std::string>();
-    	encoders[i].setData(data[i]);
-    	//threads[i] = std::thread(encodingNeeds<std::string>, std::ref(encoders[i]));
+    /*
+    while (infile.good()) {
+    	int j = 0;
+    	for (int i = 0; i < numThreads; i++) {
+		    std::getline(infile, data[j]);
+		    std::cout << data[i] << std::endl;
+		    encoders[i] = Encoder<std::string>();
+		    threads[i] = std::thread(encodingNeeds<std::string>, std::ref(encoders[i]), data[i]);
+		    threads[i].join(); // join the thread after the encoding is complete
+		    j++;
+		}
     }
+    */
+
+    while (infile.good()) {
+	    int j = 0;
+	    for (int i = 0; i < numThreads; i++) {
+	        std::getline(infile, data[j]);
+	        encoders[i] = Encoder<std::string>();
+	        threads[i] = std::thread(encodingNeeds<std::string>, std::ref(encoders[i]), data[j]);
+	        j++;
+	    }
+	    for (int i = 0; i < numThreads; i++) {
+	        threads[i].join(); // join the thread after the encoding is complete
+	    }
+	}
+    
 
     //insert encoded items into the hash table, implementing that right now
 
