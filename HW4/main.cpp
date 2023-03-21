@@ -38,7 +38,8 @@ int main(int argc, char **argv) {
     }
 
     //thread count
-    const int numThreads = *argv[2];
+    const int numThreads = std::stoi(argv[2]);
+
     if (numThreads == 0) {
     	std::cerr << "You must input a number of threads, the current threaad count is 0" << std::endl;
     }
@@ -74,9 +75,12 @@ int main(int argc, char **argv) {
 	    int j = 0;
 	    for (int i = 0; i < numThreads; i++) {
 	        std::getline(infile, data[j]);
-	        encoders[i] = Encoder<std::string>();
-	        threads[i] = std::thread(encodingNeeds<std::string>, std::ref(encoders[i]), data[j]);
-	        j++;
+	        if (!data[j].empty()) {
+	        	encoders[i] = Encoder<std::string>();
+		        threads[i] = std::thread(encodingNeeds<std::string>, std::ref(encoders[i]), data[j]);
+		        j++;
+	        }
+	        
 	    }
 	    for (int i = 0; i < numThreads; i++) {
 	        threads[i].join(); // join the thread after the encoding is complete
