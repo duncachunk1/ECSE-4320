@@ -29,6 +29,9 @@ int main(int argc, char **argv) {
         return 1;
     }
 
+    //create table object
+    HashTable *ht = create_table(CAPACITY);
+
     //checks if file can be opened
     std::string filename = argv[1];
     std::ifstream infile(filename);
@@ -38,7 +41,8 @@ int main(int argc, char **argv) {
     }
 
     //thread count
-    const int numThreads = *argv[2];
+    //const int numThreads = *argv[2];
+    const int numThreads = std::stoi(argv[2]);
     if (numThreads == 0) {
     	std::cerr << "You must input a number of threads, the current threaad count is 0" << std::endl;
     }
@@ -74,16 +78,21 @@ int main(int argc, char **argv) {
 	    int j = 0;
 	    for (int i = 0; i < numThreads; i++) {
 	        std::getline(infile, data[j]);
-	        encoders[i] = Encoder<std::string>();
-	        threads[i] = std::thread(encodingNeeds<std::string>, std::ref(encoders[i]), data[j]);
-	        j++;
+            if(!data[j].empty()){
+	            encoders[i] = Encoder<std::string>();
+	            threads[i] = std::thread(encodingNeeds<std::string>, std::ref(encoders[i]), data[j]);
+	            j++;
+            }
+            else{
+                break;
+            }
 	    }
 	    for (int i = 0; i < numThreads; i++) {
 	        threads[i].join(); // join the thread after the encoding is complete
+            ht_insert(ht,encoders[i].getEncodedData(),encoders[i].getData());
 	    }
 	}
-    
-
+       
     //insert encoded items into the hash table, implementing that right now
 
     return 0;
