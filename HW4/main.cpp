@@ -86,7 +86,18 @@ int main(int argc, char **argv) {
     }
 
 	//std::cout << "Hello" << std::endl;
-
+    std::bool ena;
+    std::string input;
+    std::cout << "Type (yes/no) if you want to enable SIMD commands";
+	std::cin >> input;
+    if (input == "yes"){
+        std::cerr <<"SIMD on"<<std::endl;
+        ena = true
+    }
+    else{
+        std::cerr <<"SIMD off"<<std::endl;
+        ena = false
+    }
     //*
     std::string input;
     std::cout << "Enter your input or hit '$' to quit: ";
@@ -97,7 +108,7 @@ int main(int argc, char **argv) {
 	    encoders[0].setData(input);
 	    encoders[0].encodeData();
 	    input = encoders[0].getEncodedData();
-	    print_search(ht, input);
+	    print_search(ht, input, ena);
 	    //print_table(ht);
 	    std::cout << "Enter your input or hit 'enter' to quit: ";
 	  	std::cin >> input;

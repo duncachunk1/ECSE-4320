@@ -5,6 +5,9 @@
 #include <string>
 #include <vector>
 #include <cstring>
+#include <x86intrin.h>
+#include <xmmintrin.h>
+#include <immintrin.h>
 
 #define CAPACITY 50000 // Size of the HashTable.
 
@@ -316,7 +319,7 @@ std::vector<int> ht_search(HashTable *table, std::string key)
 std::vector<int> ht_search_AVX(HashTable *table, std::string key)
 {
     unsigned long index = hash_function(key);
-
+    Ht_item *item = table->items[index];
     // Search for the key using AVX-512 instructions.
     const int chunk_size = 64;  // Chunk size for AVX-512 operations.
     int key_size = key.size();
@@ -332,7 +335,7 @@ std::vector<int> ht_search_AVX(HashTable *table, std::string key)
                 __m512i item_chunk = _mm512_loadu_si512((__m512i*)&item->key[i]);
                 __mmask64 cmp_mask = _mm512_cmpeq_epi8_mask(key_chunk, item_chunk);
                 if (cmp_mask != 0)
-                    return item;
+                    return item->value;
                 item = item->nextInIndex;
             }
         }
@@ -340,7 +343,7 @@ std::vector<int> ht_search_AVX(HashTable *table, std::string key)
     }
 
     // Key not found.
-    return NULL;
+    return std::vector<int>();;
 }
 
 void ht_delete(HashTable *table, std::string key)
@@ -417,9 +420,15 @@ void ht_delete(HashTable *table, std::string key)
     }
 }
 
-void print_search(HashTable *table, std::string key)
+void print_search(HashTable *table, std::string key, std::bool enable)
 {
-    std::vector<int> val = ht_search(table, key);
+    if (enable){
+        std::vector<int> val = ht_search_avx(table, key);
+    }
+    else{
+        std::vector<int> val = ht_search(table, key);
+    }
+
 
     if (val.empty())
     {
