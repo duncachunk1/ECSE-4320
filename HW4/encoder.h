@@ -110,18 +110,3 @@ void Encoder<dataType>::print(std::ostream& os) {
 
 
 #endif
-Footer
-© 2023 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-ECSE-4320/encoder.h at main · duncachunk1/ECSE-4320 · GitHub

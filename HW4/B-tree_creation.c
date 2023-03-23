@@ -19,7 +19,7 @@ void insert(Node* root, int value) {
     while (curr->child[0] != nullptr) {
         int i = 0;
         //count to correct child node
-        while (i < curr->count && curr->keys[i] < value) {
+        while (i < curr->count && curr->keys[i] > value) {
             i++;
         }
         //set current node to correct notde
@@ -54,6 +54,7 @@ void insert(Node* root, int value) {
         //for each key above the splitting point add current keys and child pointers to new node
         // changed form split_point to split_point + 1
         for (int i = split_point; i < MAX_KEYS; i++) {
+            //new nodes
             new_node->keys[new_node->count] = curr->keys[i];
             new_node->child[new_node->count] = curr->child[i];
             new_node->count++;
@@ -63,11 +64,18 @@ void insert(Node* root, int value) {
         curr->count = split_point;
         //set all keys and child pointers that were split to 0 or null
         for (int i = curr->count; i < MAX_KEYS; i++) {
+            //curr
             curr->keys[i] = 0;
             curr->child[i + 1] = nullptr;
         }
         //This line and below is where the problem is 
-        insert(curr == root ? new Node() : curr->child[MAX_KEYS], new_value);
+        if(curr == root){
+            insert(new Node(), new_value);    
+        }
+        else{
+            insert(curr->child[MAX_KEYS], new_value);
+        }
+        //insert(curr == root ? new Node() : curr->child[MAX_KEYS], new_value);
         //add new child from insertion
         new_node->child[0] = curr->child[split_point];
         //set current child node to new node
@@ -79,7 +87,7 @@ void insert(Node* root, int value) {
         }
         cout << endl;
         //print new node keys
-                cout << "Right: " << endl;
+        cout << "Right: " << endl;
         for (int i = 0; i < MAX_KEYS; i++){
             cout << new_node->keys[i] << " ";
         }

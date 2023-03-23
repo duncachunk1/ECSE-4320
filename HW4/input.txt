@@ -18,3 +18,4 @@ Category C
 Category A
 Category A
 Category B
+Category Z

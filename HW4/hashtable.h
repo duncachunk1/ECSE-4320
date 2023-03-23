@@ -313,6 +313,36 @@ std::vector<int> ht_search(HashTable *table, std::string key)
     return std::vector<int>();
 }
 
+std::vector<int> ht_search_AVX(HashTable *table, std::string key)
+{
+    unsigned long index = hash_function(key);
+
+    // Search for the key using AVX-512 instructions.
+    const int chunk_size = 64;  // Chunk size for AVX-512 operations.
+    int key_size = key.size();
+    int i = 0;
+    while (i + chunk_size <= key_size)
+    {
+        __m512i key_chunk = _mm512_loadu_si512((__m512i*)&key[i]);
+        for (int j = 0; j < table->size; j++)
+        {
+            item = table->items[j];
+            while (item != NULL)
+            {
+                __m512i item_chunk = _mm512_loadu_si512((__m512i*)&item->key[i]);
+                __mmask64 cmp_mask = _mm512_cmpeq_epi8_mask(key_chunk, item_chunk);
+                if (cmp_mask != 0)
+                    return item;
+                item = item->nextInIndex;
+            }
+        }
+        i += chunk_size;
+    }
+
+    // Key not found.
+    return NULL;
+}
+
 void ht_delete(HashTable *table, std::string key)
 {
     // Deletes an item from the table.
@@ -407,6 +437,8 @@ void print_search(HashTable *table, std::string key)
     }
 }
 
+
+
 void print_item(Ht_item *it) {
     std::cout << "Key: " << it->key << "-->";
 }
@@ -457,18 +489,3 @@ int main()
     return 0;
 }
 */
-Footer
-© 2023 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-ECSE-4320/hashtable.h at main · duncachunk1/ECSE-4320 · GitHub

@@ -107,7 +107,6 @@ int main(int argc, char **argv) {
     //print_table(ht);
 
     free_table(ht);
-
 	
 	infile.close();
     return 0;
