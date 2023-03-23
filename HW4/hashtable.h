@@ -318,6 +318,7 @@ std::vector<int> ht_search(HashTable *table, std::string key)
 
 std::vector<int> ht_search_AVX(HashTable *table, std::string key)
 {
+    /*
     unsigned long index = hash_function(key);
     Ht_item *item = table->items[index];
     // Search for the key using AVX-512 instructions.
@@ -332,6 +333,7 @@ std::vector<int> ht_search_AVX(HashTable *table, std::string key)
             item = table->items[j];
             while (item != NULL)
             {
+                printf("im comparing/n");
                 __m512i item_chunk = _mm512_loadu_si512((__m512i*)&item->key[i]);
                 __mmask64 cmp_mask = _mm512_cmpeq_epi8_mask(key_chunk, item_chunk);
                 if (cmp_mask != 0)
@@ -341,9 +343,76 @@ std::vector<int> ht_search_AVX(HashTable *table, std::string key)
         }
         i += chunk_size;
     }
-
     // Key not found.
     return std::vector<int>();;
+    */
+    unsigned long index = hash_function(key);
+    Ht_item *item = table->items[index];
+    // Check the main index.
+    /*
+    if (item != NULL && item->key == key){
+        std::cerr <<"main index worked"<<std::endl;
+        return item->value;
+    }
+    */
+    /*
+    // Check the overflow buckets.
+    LinkedList *overflow_bucket = table->overflow_buckets[index];
+    while (overflow_bucket != NULL)
+    {
+        item = overflow_bucket->item;
+        if (item->key == key)
+            return item->value;
+        overflow_bucket = overflow_bucket->next;
+    }
+    */
+
+    // Search for the key using AVX-512 instructions.
+    const int chunk_size = 64;  // Chunk size for AVX-512 operations.
+    int key_size = key.size();
+    std::cerr << key_size << std::endl;
+    int i = 0;
+    while (i + chunk_size <= CAPACITY)
+    {
+        __m512i key_chunk = _mm512_loadu_si512((__m512i*)&key[i]);
+
+        for (int j = 0; j < table->size; j++)
+        {
+            item = table->items[j];
+            while (item != NULL)
+            {
+                __m512i item_chunk = _mm512_loadu_si512((__m512i*)&item->key[i]);
+                __mmask64 cmp_mask = _mm512_cmpeq_epi8_mask(key_chunk, item_chunk);
+                std::cerr << "comparason: " << table->items[j] << " " << item->key[i] << std::endl;
+                if (cmp_mask != 0){
+                    std::cerr <<"SIMD worked"<<std::endl;
+                    return item->value;
+                }
+                item = item->nextInIndex;
+            }
+        }
+        i += chunk_size;
+    }
+
+    // Search for the remaining part of the key.
+    /*
+    for (; i < key_size; i++)
+    {
+        for (int j = 0; j < table->size; j++)
+        {
+            item = table->items[j];
+            while (item != NULL)
+            {
+                if (item->key[i] == key[i])
+                    return item->value;
+                item = item->nextInIndex;
+            }
+        }
+    }
+    */
+
+    // Key not found.
+    return std::vector<int>();
 }
 
 void ht_delete(HashTable *table, std::string key)
@@ -424,7 +493,8 @@ void print_search(HashTable *table, std::string key, bool enable)
 {
     std::vector<int> val;
     if (enable){
-        val = ht_search_AVX(table, key);
+        //val = ht_search_AVX(table, key);
+        val = ht_search(table, key);
     }
     else{
         val = ht_search(table, key);
