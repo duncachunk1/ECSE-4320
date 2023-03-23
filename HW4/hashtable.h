@@ -420,13 +420,14 @@ void ht_delete(HashTable *table, std::string key)
     }
 }
 
-void print_search(HashTable *table, std::string key, std::bool enable)
+void print_search(HashTable *table, std::string key, bool enable)
 {
+    std::vector<int> val;
     if (enable){
-        std::vector<int> val = ht_search_avx(table, key);
+        val = ht_search_AVX(table, key);
     }
     else{
-        std::vector<int> val = ht_search(table, key);
+        val = ht_search(table, key);
     }
 
 

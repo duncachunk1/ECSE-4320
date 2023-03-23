@@ -86,20 +86,19 @@ int main(int argc, char **argv) {
     }
 
 	//std::cout << "Hello" << std::endl;
-    std::bool ena;
+    bool ena;
     std::string input;
     std::cout << "Type (yes/no) if you want to enable SIMD commands";
 	std::cin >> input;
     if (input == "yes"){
         std::cerr <<"SIMD on"<<std::endl;
-        ena = true
+        ena = true;
     }
     else{
         std::cerr <<"SIMD off"<<std::endl;
-        ena = false
+        ena = false;
     }
     //*
-    std::string input;
     std::cout << "Enter your input or hit '$' to quit: ";
 	std::cin >> input;
     while (input != "$") {
