@@ -5,24 +5,37 @@
 #include <queue>
 #include <mutex>
 #include <condition_variable>
+#include <string>
+#include <chrono>
 
 #include "hashtable.h"
 #include "encoder.h"
 
-std::mutex mtx;
-std::condition_variable cv;
-bool ready = false;
-int lineNum = 0;
+using namespace std::chrono;
 
+int lineNum = 0;
+std::vector<int> vanillaWord;
 
 std::pair<std::string, int> processLine(std::ifstream &infile, int thread_id) {
     std::string line;
     std::getline(infile, line);
+    line.erase(std::remove(line.begin(), line.end(), '\n'), line.end());
+    line.erase(std::remove(line.begin(), line.end(), '\r'), line.end());
     int r = ++lineNum;
     return std::make_pair(line, r);
 }
-//temporary function Im playing around with to try and solve the issue with parallel programming. Something
-//about a static function
+
+//dumb way to look for a string in a file
+void vanillaSearch(std::ifstream &infile, std::string& word, int thread_id) {
+	auto temp = processLine(infile, thread_id);
+	if (!temp.first.empty() && temp.first == word) {
+		std::cout << temp.second << std::endl;
+		vanillaWord.push_back(temp.second);
+	}
+}
+
+
+//function to ease encoding with parallel programming
 template <typename dataType>
 void encodingNeeds(Encoder<dataType>& e, std::ifstream &infile, int thread_id, HashTable* h) {
 	std::pair<std::string, int> p = processLine(infile, thread_id);
@@ -72,10 +85,15 @@ int main(int argc, char **argv) {
 
     std::cout << "Processing the data..." << std::endl;
 
+    auto start = high_resolution_clock::now();
+	auto stop = high_resolution_clock::now();
+	auto duration = duration_cast<milliseconds>(stop - start);
+
     //read data into the program depending on the desired number of threads
     std::thread threads[numThreads];
     Encoder<std::string> encoders[numThreads];
     bool flag = false;
+    start = high_resolution_clock::now();
     while (!infile.eof()) {
 	    for (int i = 0; i < numThreads; ++i) {
 	        threads[i] = std::thread(encodingNeeds<std::string>, std::ref(encoders[i]), std::ref(infile), i, std::ref(ht));
@@ -84,40 +102,74 @@ int main(int argc, char **argv) {
 	        threads[i].join();
 	    }
     }
+    stop = high_resolution_clock::now();
+    duration = duration_cast<milliseconds>(stop - start);
+    std::cout << "Encoding Time: " << duration.count() << " ms" << std::endl;
 
-	//std::cout << "Hello" << std::endl;
-    bool ena;
+
+    std::vector<std::pair<int, std::string> > vanillaPrefix;
+    std::vector<int> vanillaWord;
+
     std::string input;
-    std::cout << "Type (yes/no) if you want to enable SIMD commands: ";
-	std::cin >> input;
-    if (input == "yes"){
-        std::cerr <<"SIMD on"<<std::endl;
-        ena = true;
-    }
-    else{
-        std::cerr <<"SIMD off"<<std::endl;
-        ena = false;
-    }
-    //*
+    std::string pref;
+    std::string searchType;
+
+    
+    
     std::cout << "Enter your input or hit '$' to quit: ";
 	std::cin >> input;
     while (input != "$") {
-	  	input.erase(std::remove(input.begin(), input.end(), '\n'), input.end());
-	    input.erase(std::remove(input.begin(), input.end(), '\r'), input.end());
-	    encoders[0].setData(input);
-	    encoders[0].encodeData();
-	    input = encoders[0].getEncodedData();
-	    print_search(ht, input, ena);
-	    //print_table(ht);
-	    std::cout << "Enter your input or hit 'enter' to quit: ";
+    	std::cout << "Would you rather the 'baseline' search or 'encoded' search: " << std::endl;
+    	std::cin >> searchType;
+
+    	if (searchType == "baseline") {
+    		
+    		//resets to beginning of file
+    		infile.close();
+    		std::ifstream infile(argv[1]);
+
+    		lineNum = 0;
+    		input.erase(std::remove(input.begin(), input.end(), '\n'), input.end());
+    		input.erase(std::remove(input.begin(), input.end(), '\r'), input.end());
+    		
+    		start = high_resolution_clock::now();
+    		while (!infile.eof()) {
+			    for (int i = 0; i < numThreads; ++i) {
+			        threads[i] = std::thread(vanillaSearch, std::ref(infile), std::ref(input), i);
+			    }
+			    for (int i = 0; i < numThreads; ++i) {
+			        threads[i].join();
+			    }
+		    }
+		    stop = high_resolution_clock::now();
+		    std::cout << "Key: " << input << std::endl;
+    		std::cout << "Occurrences: " << vanillaWord.size() << std::endl;
+    		for (int i = 0; i < vanillaWord.size(); i++) {
+    			std::cout << "\t" << vanillaWord[i] << std::endl;
+    		}
+    		duration = duration_cast<milliseconds>(stop - start);
+    		std::cout << "Duration: " << duration.count() << " ms" << std::endl;
+		    vanillaWord.clear();
+    	}
+    	else if (searchType == "encoded") {
+    		input.erase(std::remove(input.begin(), input.end(), '\n'), input.end());
+		    input.erase(std::remove(input.begin(), input.end(), '\r'), input.end());
+		    encoders[0].setData(input);
+		    encoders[0].encodeData();
+		    input = encoders[0].getEncodedData();
+		    start = high_resolution_clock::now();
+		    print_search(ht, input);
+		  	stop = high_resolution_clock::now();
+		    duration = duration_cast<milliseconds>(stop - start);
+		    std::cout << "Duration: " << duration.count() << " ms" << std::endl;
+    	}
+	  	std::cout << "Enter your input or hit 'enter' to quit: ";
 	  	std::cin >> input;
     }
-    //*/
     
-    //print_table(ht);
 
+    infile.close();
     free_table(ht);
-	
-	infile.close();
+
     return 0;
 }

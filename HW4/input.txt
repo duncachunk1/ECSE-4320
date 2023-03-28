@@ -1,21 +1,10 @@
-Category A
-Category B
-Category A
-Category A
-Category C
-Category B
-Category A
-Category C
-Category C
-Category B
-Category A
-Category C
-Category A
-Category B
-Category A
-Category B
-Category C
-Category A
-Category A
-Category B
-Category Z
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
