@@ -150,13 +150,14 @@ int main(int argc, char **argv) {
   int val, ch;
   struct stat file_stats;
   char *filename = argv[1];
+  int searchItem = atoi(argv[2]);
   clock_t start_time, end_time;
   double elapsed_time;
 
 //*
 
   //Verifies command line arguments
-  if (argc != 2) {
+  if (argc != 3) {
       fprintf(stderr, "Usage: %s input_file \n", argv[0]);
       fprintf(stderr, "ARGC: %d\n", argc);
       fprintf(stderr, "%s, %s\n", argv[0], argv[1]);
@@ -199,7 +200,7 @@ int main(int argc, char **argv) {
   //traversal(root);
 
   printf("\n");
-  search(11, &ch, root);
+  search(searchItem, &ch, root);
 
   return 0;
 
