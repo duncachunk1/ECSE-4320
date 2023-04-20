@@ -199,8 +199,13 @@ int main(int argc, char **argv) {
 
   //traversal(root);
 
-  printf("\n");
+  printf("\n\n");
+
+  start_time = clock();
   search(searchItem, &ch, root);
+  end_time = clock();
+  elapsed_time = (double)(end_time - start_time) / CLOCKS_PER_SEC;
+  printf("\nSearch time: %f seconds\n", elapsed_time);
 
   return 0;
 
