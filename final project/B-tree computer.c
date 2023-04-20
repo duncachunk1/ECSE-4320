@@ -144,22 +144,45 @@ void traversal(struct BTreeNode *myNode) {
   }
 }
 
-int main() {
+int main(int argc, char **argv) {
   int val, ch;
 
-  insert(8);
-  insert(9);
-  insert(10);
-  insert(11);
-  insert(15);
-  insert(16);
-  insert(17);
-  insert(18);
-  insert(20);
-  insert(23);
+//*
+
+  //Verifies command line arguments
+  if (argc != 2) {
+      fprintf(stderr, "Usage: %s input_file num_threads\n", argv[0]);
+      fprintf(stderr, "ARGC: %d\n", argc);
+      fprintf(stderr, "%s, %s\n", argv[0], argv[1]);
+      return 1;
+  }
+
+  //checks if the input file has items in it
+  FILE *infile = fopen(argv[1], "r");
+  if (infile == NULL) {
+      perror("Error opening input file");
+      return 1;
+  }
+  if (getc(infile) == EOF) {
+      fprintf(stderr, "Error: Input file is empty\n");
+      return 1;
+  }
+
+  //looping insertions
+  int number;
+    while (fscanf(infile, "%d", &number) != EOF) {
+        insert(number);
+    }
+
+  fclose(infile);
+
+  
 
   traversal(root);
 
   printf("\n");
   search(11, &ch, root);
+
+  return 0;
+
 }
