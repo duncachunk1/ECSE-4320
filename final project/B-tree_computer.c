@@ -4,8 +4,9 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 #include <time.h>
+#include <immintrin.h>
 
-#define MAX 3
+#define MAX 8
 #define MIN 2
 
 struct BTreeNode {
@@ -87,7 +88,7 @@ int setValue(int val, int *pval,
        (val < node->val[pos] && pos > 1); pos--)
       ;
     if (val == node->val[pos]) {
-      printf("Duplicates are not permitted\n");
+      //printf("Duplicates are not permitted\n");
       return 0;
     }
   }
@@ -130,9 +131,51 @@ void search(int val, int *pos, struct BTreeNode *myNode) {
     }
   }
   search(val, pos, myNode->link[*pos]);
-
   return;
 }
+
+void avx_search(int val, int *pos, struct BTreeNode *myNode) {
+  if (!myNode) {
+    return;
+  }
+  __m256i v_val = _mm256_set1_epi32(val);
+  __m256i v_vals;
+  int i, j;
+
+  if (val < myNode->val[1]) {
+    *pos = 0;
+  } else {
+    for (*pos = myNode->count; *pos > 1; (*pos)--) {
+      if (*pos >= 8) {
+        // Process 8 values at a time using AVX instructions
+        v_vals = _mm256_loadu_si256((__m256i *)&myNode->val[*pos - 7]);
+        __m256i v_mask = _mm256_cmpgt_epi32(v_val, v_vals);
+        int mask = _mm256_movemask_epi8(v_mask);
+        if (mask != 0) {
+          // Find the index of the first set bit in the mask
+          j = __builtin_ctz(mask);
+          *pos -= (j / 4);
+          break;
+        }
+        *pos -= 8;
+      } else {
+        // Process one value at a time
+        if (val >= myNode->val[*pos]) {
+          break;
+        }
+        (*pos)--;
+      }
+    }
+
+    if (val == myNode->val[*pos]) {
+      printf("%d is found", val);
+      return;
+    }
+  }
+
+  avx_search(val, pos, myNode->link[*pos]);
+}
+
 
 // Traverse then nodes
 void traversal(struct BTreeNode *myNode) {
@@ -206,6 +249,13 @@ int main(int argc, char **argv) {
   end_time = clock();
   elapsed_time = (double)(end_time - start_time) / CLOCKS_PER_SEC;
   printf("\nSearch time: %f seconds\n", elapsed_time);
+
+
+  start_time = clock();
+  avx_search(searchItem, &ch, root);
+  end_time = clock();
+  elapsed_time = (double)(end_time - start_time) / CLOCKS_PER_SEC;
+  printf("\nAVX Search time: %f seconds\n", elapsed_time);
 
   return 0;
 
