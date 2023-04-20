@@ -22,7 +22,7 @@ int main(int argc, char **argv) {
     int randInt;
     unsigned int size = std::stoi(argv[2]);
     for (unsigned int i = 0; i < size; i++) {
-        randInt = rand() % 20;
+        randInt = rand();
         outfile << randInt << std::endl;
     }
     

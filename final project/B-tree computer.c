@@ -2,6 +2,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/stat.h>
+#include <time.h>
 
 #define MAX 3
 #define MIN 2
@@ -146,12 +148,16 @@ void traversal(struct BTreeNode *myNode) {
 
 int main(int argc, char **argv) {
   int val, ch;
+  struct stat file_stats;
+  char *filename = argv[1];
+  clock_t start_time, end_time;
+  double elapsed_time;
 
 //*
 
   //Verifies command line arguments
   if (argc != 2) {
-      fprintf(stderr, "Usage: %s input_file num_threads\n", argv[0]);
+      fprintf(stderr, "Usage: %s input_file \n", argv[0]);
       fprintf(stderr, "ARGC: %d\n", argc);
       fprintf(stderr, "%s, %s\n", argv[0], argv[1]);
       return 1;
@@ -168,17 +174,29 @@ int main(int argc, char **argv) {
       return 1;
   }
 
+  //File stats
+  if (stat(filename, &file_stats) == 0) {
+      // Print the file size in bytes
+      printf("File size: %ld bytes\n", file_stats.st_size);
+  }
+
   //looping insertions
   int number;
-    while (fscanf(infile, "%d", &number) != EOF) {
-        insert(number);
-    }
+  start_time = clock();
+  while (fscanf(infile, "%d", &number) != EOF) {
+      insert(number);
+  }
+  end_time = clock();
+  elapsed_time = (double)(end_time - start_time) / CLOCKS_PER_SEC;
+  printf("Elapsed time: %f seconds\n", elapsed_time);
+
+  printf("Throughput: %f bps", file_stats.st_size / elapsed_time);
 
   fclose(infile);
 
   
 
-  traversal(root);
+  //traversal(root);
 
   printf("\n");
   search(11, &ch, root);
