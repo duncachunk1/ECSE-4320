@@ -52,7 +52,7 @@ The code is a C program that implements a B-tree data structure for searching an
 ## Testing and Analysis
 
 For the raspberry pi, we obtained the following results:
-![](./Data_pi.png)
+![](./Data_Pi.png)
 |File Size (b)|	Build Time (s)|	Throughput (bps)|	Search (s)|
 |---|---|---|---|
 1039	|0.000578	|1797577.855	|0.000038|
