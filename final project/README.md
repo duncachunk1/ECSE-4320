@@ -25,21 +25,7 @@ To Install please make sure that you have downloaded the full folder
 
 ### Razer Blade 17
 
-| | |
-|---|---|
-|processor       | 0 
-|model name      | ARMv6-compatible processor rev 7 (v6l)
-|BogoMIPS        | 697.95
-|Features        | half thumb fastmult vfp edsp java tls
-|CPU implementer | 0x41
-|CPU architecture| 7
-|CPU variant     | 0x0
-|CPU part        | 0xb76
-|CPU revision    | 7
-|Hardware        | BCM2835
-|Revision        | 9000c1
-|Serial          | 00000000e0e347c5
-|Model           | Raspberry Pi Zero W Rev 1.1|
+Processor	11th Gen Intel(R) Core(TM) i7-11800H @ 2.30GHz, 2304 Mhz, 8 Core(s), 16 Logical Processor(s)
 
 ## Compilation
 
@@ -66,6 +52,8 @@ The code is a C program that implements a B-tree data structure for searching an
 - splitNode(): splits a B-tree node in half and returns a new node with the higher values
 - setValue(): sets by recursively traversing the tree until the appropriate node is found, and then inserting the value in the correct position
 - search(): searches for a value in the B-tree by recursively traversing the tree until the value is found
+
+The big difference between the AVX accelerated instructions and the normal instructions is that the AVX instruction read a few sequential nodes into a vector and uses a bitmask to compare the downstream nodes to the search term allowing in special cases to "jump" ahead of the search and in fail cases to just do node comparasons faster as you can compare whole nodes in significanly fewer cycles
 
 ## Testing and Analysis
 
