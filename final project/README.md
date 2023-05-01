@@ -23,12 +23,30 @@ To Install please make sure that you have downloaded the full folder
 |Serial          | 00000000e0e347c5
 |Model           | Raspberry Pi Zero W Rev 1.1|
 
+### Razer Blade 17
+
+| | |
+|---|---|
+|processor       | 0 
+|model name      | ARMv6-compatible processor rev 7 (v6l)
+|BogoMIPS        | 697.95
+|Features        | half thumb fastmult vfp edsp java tls
+|CPU implementer | 0x41
+|CPU architecture| 7
+|CPU variant     | 0x0
+|CPU part        | 0xb76
+|CPU revision    | 7
+|Hardware        | BCM2835
+|Revision        | 9000c1
+|Serial          | 00000000e0e347c5
+|Model           | Raspberry Pi Zero W Rev 1.1|
+
 ## Compilation
 
 Use the following command to compile the program
 
 ```
-**compilation here**
+ g++ -mavx -march=native -mfpmath=both -O3 B-tree_computer.c -o b.out
 ```
 ## Execution
 
@@ -64,7 +82,16 @@ For the raspberry pi, we obtained the following results:
 
 The search algorithm we used has a time complexity of O(log n). This means that as the size of the data set increases, the time taken to search for a particular element using this algorithm will increase, but not as quickly as it would with a linear search algorithm, which has a time complexity of O(n). As a result, it is strange and unclear why increasing the size of the data set would result in a decrease in search time.
 
+For the computer we obtained the following results
+
+|# of entries |	Search time AVX (us)|	Search time (us)| Throughput (Mbps) |
+|---|---|---|---|
+|500000	|1	|2	| 2.57 |
+|5000000	|1	|4	| 2.78 |
+|10000000	|2	|42	| 54.28 |
+
+
 ## Conclusion
 Based on our testing and analysis, we can conclude that the Raspberry Pi is much less efficient at storing and retrieving information from a B-tree than an Intel CPU in a regular laptop. The Raspberry Pi's lack of support for SIMD instructions, specifically NEON, hinders its ability to perform optimized searches. This limitation ultimately makes it an illegitimate comparison to an Intel CPU when it comes to B-tree performance. 
 
---INSERT OTHER CONCLUSIONS--
+For the Computer based compression program the larger amount of memory and the faster clock means that the program runs much faster on a laptop cpu. The laptop also come with the addtion of some SIMD acceleration which allows it to vastly outpreform the microcontroller based program. Compared to the completely optimized Palm tree the regualr B+-tree still underpreforms, but the techniques and locking mechanisms required to implement the improved version I judged to be beyond my skill and the expected scope of the class.
